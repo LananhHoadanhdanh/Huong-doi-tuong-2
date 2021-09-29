@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    class Apple {
+        weight;
+        constructor(weight) {
+            this.weight = weight
+        }
+        decrease() {
+            if (this.weight > 0) {
+                this.weight --
+            }
+        }
+        isEmpty() {
+            if (this.weight === 0) {
+                return true;
+            } else {
+                return false
+            }
+        }
+        checkWeight() {
+            return this.weight
+        }
+        getWeight(wei) {
+            this.weight += wei
+        }
+    }
+    class Human {
+        name;
+        gender;
+        weight;
+        constructor(name, gender, weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+        isMale() {
+            if (this.gender === 'Male') {
+                return true
+            } else {
+                return false
+            }
+        }
+        setGender(gender) {
+            this.gender = gender;
+        }
+        checkApple(apple) {
+            return apple.isEmpty()
+        }
+        eat(apple) {
+            if (apple.isEmpty()) {
+            return "Hết táo rồi"
+            } else {
+                apple.decrease()
+                this.weight ++
+            }
+        }
+        checkAppleWeight(apple) {
+            return apple.checkWeight()
+        }
+        say(string) {
+            return this.name + 'said: ' + string
+        }
+        getName() {
+            return this.name
+        }
+        getName(who) {
+            return this.name + 'asked' + who + 's name.'
+        }
+        getWeight() {
+            return this.weight
+        }
+        getWeight(who) {
+            return this.name + 'asked' + who + 's weight.'
+        }
+        setWeight(wei) {
+            this.weight = wei
+        }
+    }
+    let apple1 = new Apple(10);
+    let apple2 = new Apple(10);
+    let adam = new Human('Adam', true, 65);
+    let eva = new Human('Eva', false, 45);
+    adam.eat(apple1);
+    console.log(adam.checkAppleWeight(apple1));
+    console.log(apple1.weight)
+    for (let i = apple1.weight; i > 0; i--) {
+        adam.eat(apple1)
+    }
+    console.log(adam.checkApple(apple1));
+    for (let i = apple2.weight; i > 0; i--) {
+        eva.eat(apple2)
+    }
+    console.log(eva.checkApple(apple2));
+</script>

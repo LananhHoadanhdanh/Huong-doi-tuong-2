@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Objects</title>
+  </head>
+  <body>
+  <div id="game" style="width: 1000px; height: 500px; border: black solid 1px"></div>
+  <br>
+  <button onclick="sangTrai()">Sang trái</button>
+  <button onclick="sangPhai()">Sang phải</button>
+  <button onclick="lenTren()">Lên trên</button>
+  <button onclick="xuongDuoi()">Xuống dưới</button>
+  </body>
+</html>
+
+<script>
+  class Hero {
+    image;
+    top;
+    left;
+    width;
+    height;
+    speed;
+    constructor(image, top, left, width, height, speed) {
+      this.image = image;
+      this.top = top;
+      this.left = left;
+      this.width = width;
+      this.height = height;
+      this.speed = speed;
+    }
+    getHeroElement(){
+      return '<img width = "' + this.width + '"' +
+              'height="' + this.height + '"' +
+              'src = "' + this.image + '"' +
+              'alt = "shinobu"' +
+              'style = "top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
+    }
+    moveRight(){
+      if (this.left < 1000 - this.width) {
+        this.left += this.speed;
+      } else {
+        this.left = 10
+      }
+    }
+    moveLeft(){
+      if (this.left > 0) {
+        this.left -= this.speed;
+      } else {
+        this.left = 1000 - this.width
+      }
+    }
+    moveUp(){
+      if (this.top > 0) {
+        this.top -= this.speed;
+      } else {
+        this.top = 500 - this.height
+      }
+    }
+    moveDown(){
+      if (this.top < 500 - this.height) {
+      this.top += this.speed;
+      } else {
+        this.top = 0
+      }
+    }
+  }
+  let tocDo = +prompt('Nhập tốc độ vào đây')
+  let hero = new Hero('shinobu.png', 150, 400, 120, 172, tocDo);
+  document.getElementById('game').innerHTML = hero.getHeroElement();
+
+  // function sangPhai() {
+  //   hero.moveRight();
+  //   document.getElementById('game').innerHTML = hero.getHeroElement();
+  //   setTimeout(sangPhai, 20)
+  // }
+
+  // function sangTrai() {
+  //   hero.moveLeft();
+  //   document.getElementById('game').innerHTML = hero.getHeroElement();
+  //   setTimeout(sangTrai, 20)
+  // }
+
+  // function lenTren() {
+  //   hero.moveUp();
+  //   document.getElementById('game').innerHTML = hero.getHeroElement();
+  //   setTimeout(lenTren, 20)
+  // }
+
+  function xuongDuoi() {
+    hero.moveDown();
+    document.getElementById('game').innerHTML = hero.getHeroElement();
+    setTimeout(xuongDuoi, 1)
+  }
+</script>
